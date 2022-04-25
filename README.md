@@ -11,7 +11,7 @@ $ docker build . -t memo-api
 
 ## docker起動
 ```
-$ docker run --rm -it -p 3000:3000 memo-api
+$ docker run --rm -it -p 3000:3000 --name "memo-api" memo-api
 ```
 
 ## 動作確認
@@ -21,5 +21,11 @@ $ curl http://localhost:3000
 => {"message":"Hello World!"}
 ```
 
-## 終了
+## コンテナ停止&削除
 docker起動中のターミナルで cmd + c
+
+## Jest実行
+コンテナ起動中に別のターミナルで以下を実行
+```
+$ docker exec -it memo-api bash -c 'npm test'
+```
