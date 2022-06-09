@@ -6,10 +6,20 @@ const PORT: any = process.env.PORT || 3000;
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// PostgreSQLの設定
+const { Pool } = require('pg')
+const pool = new Pool({
+  user: 'postgres',
+  host: 'postgres',
+  database: 'postgres_db',
+  password: 'password',
+  port: 5432,
+})
+
+// ルーティング
 app.get('/', async (_req: Request, res: Response) => {
-  return res.status(200).send({
-    message: 'Hello World!',
-  })
+  const { rows } = await pool.query('select * from users')
+  return res.status(200).send({rows})
 })
 
 try {
