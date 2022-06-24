@@ -18,8 +18,7 @@ const pool = new Pool({
 
 // ルーティング
 app.get('/', async (_req: Request, res: Response) => {
-  const { rows } = await pool.query('select * from users')
-  return res.status(200).send({rows})
+  return res.status(200).send("ルートです")
 })
 
 try {
@@ -31,4 +30,3 @@ try {
     console.error(e.message)
   }
 }
-
